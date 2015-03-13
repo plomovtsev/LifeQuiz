@@ -1,0 +1,28 @@
+@font-face {
+    font-family: 'Panton';
+    src: url(../fonts/Panton/Panton-LightCaps.otf);
+}
+@font-face {
+    font-family: 'Panton Bold';
+    src: url(../fonts/Panton/Panton-BlackCaps.otf);
+}
+@font-face {
+    font-family: 'Roboto';
+    src: url(../fonts/Roboto/Roboto-Regular.ttf);
+}
+@font-face {
+    font-family: 'Roboto Thin';
+    src: url(../fonts/Roboto/Roboto-Thin.ttf);
+}
+@font-face {
+    font-family: 'Roboto Light';
+    src: url(../fonts/Roboto/Roboto-Light.ttf);
+}
+@font-face {
+    font-family: 'Lora';
+    src: url(../fonts/Lora/Lora-Regular.ttf);
+}
+@font-face {
+    font-family: 'Lora Bold';
+    src: url(../fonts/Lora/Lora-Bold.ttf);
+}

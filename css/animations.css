@@ -1,0 +1,84 @@
+/* Старт */
+.greetingBlock.ng-hide-add {
+    -webkit-animation: goLeft .5s ease;
+}
+@-webkit-keyframes goLeft {
+    50% {
+        -webkit-transform: scale(0.9, 0.9);
+    }
+    70% {
+        -webkit-transform: scale(0.95, 0.95) translateX(500px);
+    }
+    100% {
+        -webkit-transform: translateX(-1200px);
+    }
+}
+.questionBlock.ng-hide-remove {
+    -webkit-transform: translateX(3000px);
+}
+.questionBlock.ng-hide-remove-active {
+    -webkit-animation: comeFromRight .5s ease;
+}
+@-webkit-keyframes comeFromRight {
+    60% {
+        -webkit-transform: translateX(3000px);
+    }
+    100% {
+        -webkit-transform: translateX(0px);
+    }
+}
+
+/* Смена фона */
+.bkgReplaceAnimation {
+    -webkit-animation: fadeOutIn 1s ease;
+}
+@-webkit-keyframes fadeOutIn {
+    0% { opacity: 1; }
+    30% { opacity: 0; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Следующий вопрос */
+.nextQuestionAnimation {
+    -webkit-animation: nextQuestionAnimation .5s ease;
+}
+@-webkit-keyframes nextQuestionAnimation {
+    50% {
+        -webkit-transform: scale(0.9, 0.9);
+    }
+    70% {
+        -webkit-transform: scale(0.95, 0.95) translateX(200px);
+    }
+    90% {
+        -webkit-transform: translateX(-1200px);
+    }
+    91% {
+        -webkit-transform: translateX(3000px);
+    }
+    100% {
+        -webkit-transform: translateX(0px);
+    }
+}
+
+/* Предыдущий вопрос */
+.prevQuestionAnimation {
+    -webkit-animation: prevQuestionAnimation .5s ease;
+}
+@-webkit-keyframes prevQuestionAnimation {
+    50% {
+        -webkit-transform: scale(0.9, 0.9);
+    }
+    70% {
+        -webkit-transform: scale(0.95, 0.95);
+    }
+    90% {
+        -webkit-transform: translateX(1200px);
+    }
+    91% {
+        -webkit-transform: translateX(-3000px);
+    }
+    100% {
+        -webkit-transform: translateX(0px);
+    }
+}

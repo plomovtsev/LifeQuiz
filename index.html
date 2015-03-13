@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html ng-app="LifeQuiz">
+<head>
+    <link rel="stylesheet" href="./css/video-bkg.css">
+    <link rel="stylesheet" href="./css/fonts.css">
+    <link rel="stylesheet" href="./css/button.min.css">
+    <link rel="stylesheet" href="./css/divider.min.css">
+    <link rel="stylesheet" href="./css/input.min.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/animations.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <meta charset="utf-8">
+    <title>Анализ жизненной позиции</title>
+    <script src="js/lib/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.5/angular-sanitize.js"></script>
+    <script src="https://code.angularjs.org/1.4.0-beta.5/angular-animate.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/quiz.js"></script>
+    <script src="js/animation.js"></script>
+</head>
+<body ng-controller="appCtrl" ng-mouseup="mouseUpEffect()">
+
+    <video src="" autoplay loop id="bgvid"></video>
+
+    <div class="topHeader" ng-show="showTopHeader">
+        <a href="mailto:{{quiz.authorEmail}}?Subject=LifeQuiz:%20Обратная%20связь" target="_top">{{quiz.authorEmail}}</a>
+        <div class="closeBut" ng-click="showTopHeader = false"><i class="fa fa-times"></i></div>
+    </div>
+
+    <div class="wrapper">
+        <div class="pageWrapper">
+            <div class="greetingBlock" ng-hide="quizStarted">
+                <div class="header">{{quiz.title}}</div>
+                <div class="ui horizontal divider">
+                    <i class="fa fa-ambulance"></i>
+                </div>
+                <div class="text">{{quiz.description}}</div>
+                <div class="buttonBlock">
+                    <button class="ui blue right labeled icon button"
+                            ng-mousedown="mouseDownEffect($event)"
+                            ng-click="startQuiz()">
+                        Начать анализ
+                        <i class="fa fa-chevron-right icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="pageWrapper">
+            <div class="questionBlock" ng-show="quizStarted && !quizCompleted">
+                <div class="quizInfo">
+                    <div class="questionCounter" ng-if="curInd < quiz.questions.length">
+                        {{curInd + 1}} / {{quiz.questions.length}}
+                    </div>
+                </div>
+                <div class="ui divider"></div>
+                <div class="question">
+                    <span class="testClass" ng-bind-html="getCurQuestionHtml()"></span>
+                </div>
+                <div class="ui divider"></div>
+                <div class="answers">
+                    <div class="variantsBlock" ng-show="getCurQuestionType() === 'checkbox' || getCurQuestionType() === 'radio'">
+                        <div class="variant {{getCurQuestionType()}}" ng-repeat="ans in quiz.questions[curInd].answers" ng-click="pickVariant($event)">
+                            <label>
+                                <input type="{{getCurQuestionType()}}" ng-model="userAnswers[curInd]" ng-value="ans">
+                                {{ans}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="textInputBlock" ng-show="getCurQuestionType() === 'text'">
+                        <input type="text" ng-model="userAnswers[curInd]">
+                    </div>
+                </div>
+                <div class="buttonsBlock">
+                    <button class="ui tiny left labeled icon button"
+                            ng-show="curInd > 0"
+                            ng-click="prevQuestion()">
+                        Назад
+                        <i class="fa fa-chevron-left icon"></i>
+                    </button>
+                    <button class="ui tiny blue right labeled icon button"
+                            ng-show="curInd < quiz.questions.length"
+                            ng-click="nextQuestion()">
+                        {{curInd == quiz.questions.length - 1 ? 'Узнать результат' : 'Далее'}}
+                        <i class="fa fa-chevron-right icon"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="questionBlock result" ng-show="quizCompleted">
+                {{userAnswers}}
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,171 @@
+BODY {
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    background: #3b83c0;
+}
+
+/* TOP HEADER */
+.topHeader {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    padding: 6px 0 6px 0;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.25);
+    font: 14px 'Panton';
+    letter-spacing: 2px;
+    opacity: .6;
+    z-index: 1;
+}
+.topHeader a {
+    text-decoration: none;
+    cursor: pointer;
+    color: #f7fffd;
+}
+.topHeader .closeBut {
+    position: absolute;
+    right: 10px;
+    top: 8px;
+    cursor: pointer;
+    opacity: .4;
+    color: #fff;
+}
+.topHeader .closeBut:hover {
+    opacity: .8;
+}
+
+.wrapper {
+    width: 1000%;
+    z-index: 0;
+}
+.pageWrapper {
+    position: absolute;
+    width: 100%;
+    z-index: 0;
+}
+
+/* GREETING BLOCK */
+.greetingBlock {
+    width: 60%;
+    margin: 16% auto 0;
+    padding: 30px;
+    text-align: center;
+}
+.greetingBlock .header {
+    font: bold 52px 'Panton Bold';
+    color: #f6f6f6;
+    text-align: center;
+    font-variant: small-caps;
+    letter-spacing: 3px;
+}
+.greetingBlock .divider {
+    width: 400px;
+    margin: 30px auto 0;
+    color: #aaa;
+}
+.greetingBlock .text {
+    display: inline-block;
+    font: 18px 'Lora';
+    line-height: 26px;
+    color: #f6ffea;
+    letter-spacing: 1px;
+    font-variant: small-caps;
+    text-align: center;
+    margin-top: 34px;
+}
+.greetingBlock .buttonBlock {
+    margin-top: 40px;
+}
+
+/* QUESTION BLOCK */
+.questionBlock {
+    width: 60%;
+    margin: 10% auto 0;
+    padding: 20px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.71);
+}
+.quizInfo {
+    height: 20px;
+}
+.quizInfo .questionCounter {
+    float: right;
+    color: #494949;
+    font: 16px 'Lora';
+    cursor: default;
+}
+.question {
+    font: 20px 'Lora';
+    line-height: 26px;
+}
+.answers {
+    margin-top: 30px;
+}
+
+/* TEXT INPUT BLOCK */
+.textInputBlock input {
+    height: 26px;
+    padding: 4px 2px 4px 8px;
+    font: 24px 'Roboto';
+    background: #fbffed;
+    border: 1px solid #cecece;
+    border-radius: 4px;
+    transition: all .1s ease;
+}
+.textInputBlock input:focus {
+    outline: 0;
+    border-bottom: 1px solid #3b83c0;
+}
+
+/* VARIANTS BLOCK */
+.variantsBlock .variant {
+    width: 100%;
+    margin-top: 4px;
+    text-align: left;
+}
+.variantsBlock .variant:before {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    margin-left: 14px;
+    font: 22px 'FontAwesome';
+    color: #2f2f2f;
+}
+.variantsBlock .variant.checkbox:before {
+    content: '\f096';
+    margin-top: 10px;
+}
+.variantsBlock .variant.radio:before {
+    content: '\f10c';
+    margin-top: 9px;
+}
+.variantsBlock .variant:first-child {
+    margin-top: 0;
+}
+.variantsBlock .variant label {
+    display: block;
+    padding: 10px 16px 10px 48px;
+    cursor: pointer;
+    font: 18px 'Roboto Light';
+    transition: all .1s ease;
+}
+.variantsBlock .variant label:hover {
+    background: rgba(69, 138, 198, 0.08);
+}
+.variantsBlock .variant label input {
+    display: none;
+}
+.variantsBlock .variant.checkbox.checkedVariant:before {
+    content: '\f046';
+    text-shadow: 0 0 1em rgba(59, 131, 192, 0.55);
+}
+.variantsBlock .variant.radio.checkedVariant:before {
+    content: '\f192';
+    text-shadow: 0 0 1em rgba(59, 131, 192, 0.55);
+}
+
+/* BUTTONS BLOCK */
+.buttonsBlock {
+    margin-top: 30px;
+}
