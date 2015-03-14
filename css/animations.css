@@ -41,20 +41,20 @@
 
 /* Следующий вопрос */
 .nextQuestionAnimation {
-    -webkit-animation: nextQuestionAnimation .5s ease;
+    -webkit-animation: nextQuestionAnimation 1.5s ease;
 }
 @-webkit-keyframes nextQuestionAnimation {
-    50% {
+    30% {
         -webkit-transform: scale(0.9, 0.9);
     }
-    70% {
+    50% {
         -webkit-transform: scale(0.95, 0.95) translateX(200px);
     }
-    90% {
+    75% {
         -webkit-transform: translateX(-1200px);
     }
-    91% {
-        -webkit-transform: translateX(3000px);
+    76% {
+        -webkit-transform: translateX(1200px);
     }
     100% {
         -webkit-transform: translateX(0px);
@@ -63,20 +63,20 @@
 
 /* Предыдущий вопрос */
 .prevQuestionAnimation {
-    -webkit-animation: prevQuestionAnimation .5s ease;
+    -webkit-animation: prevQuestionAnimation 1.5s ease;
 }
 @-webkit-keyframes prevQuestionAnimation {
-    50% {
+    30% {
         -webkit-transform: scale(0.9, 0.9);
     }
-    70% {
+    50% {
         -webkit-transform: scale(0.95, 0.95);
     }
-    90% {
+    75% {
         -webkit-transform: translateX(1200px);
     }
-    91% {
-        -webkit-transform: translateX(-3000px);
+    76% {
+        -webkit-transform: translateX(-1200px);
     }
     100% {
         -webkit-transform: translateX(0px);
