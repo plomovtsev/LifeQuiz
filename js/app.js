@@ -14,16 +14,13 @@ angular
         var $questionBlock = document.querySelector('.questionBlock');
         $scope.startQuiz = function() {
             $scope.quizStarted = true;
-            $scope.updateVideoBkg(800);
+            $scope.updateVideoBkg(0);
         };
         var t1, t2;
         $scope.nextQuestion = function() {
-            $scope.updateVideoBkg(800);
+            $scope.updateVideoBkg(0);
             clearTimeout(t1);
-            $questionBlock.classList.add('nextQuestionAnimation');
-            t1 = setTimeout(function() {
-                $questionBlock.classList.remove('nextQuestionAnimation');
-            }, 500);
+            t1 = $scope.applyClass($questionBlock, 'nextQuestionAnimation', 1500);
             clearTimeout(t2);
             t2 = setTimeout(function() {
                 $scope.$apply(function() {
@@ -35,23 +32,21 @@ angular
                         $scope.quizCompleted = true;
                     }
                 });
-            }, 455); //Обновляем вопрос когда блок уже справа за экраном и вот-вот вылетит
+            }, 1000); //Обновляем вопрос когда блок уже справа за экраном и вот-вот вылетит
         };
         var t3, t4;
         $scope.prevQuestion = function() {
-            $scope.updateVideoBkg(800);
+            $scope.updateVideoBkg(0);
             $questionBlock.classList.add('prevQuestionAnimation');
             clearTimeout(t3);
-            t3 = setTimeout(function() {
-                $questionBlock.classList.remove('prevQuestionAnimation');
-            }, 500);
+            t3 = $scope.applyClass($questionBlock, 'prevQuestionAnimation', 1500);
             clearTimeout(t4);
             t4 = setTimeout(function() {
                 $scope.$apply(function() {
                     $scope.curInd--;
                     $scope.unpickAll();
                 });
-            }, 400);
+            }, 1000);
         };
 
         $scope.getCurQuestion = function() {
@@ -104,8 +99,15 @@ angular
                 $scope.mouseDownedBlock.style.transform = '';
             $scope.mouseDownedBlock = undefined;
         };
+        $scope.applyClass = function(element, clazz, timeout) {
+            element.classList.remove(clazz); //
+            element.classList.add(clazz);
+            return setTimeout(function() {
+                element.classList.remove(clazz);
+            }, timeout);
+        };
 
-        //Интерполяция {{xxx}} не работает в атрибутах-ссылках на контент, поэтому обновляем ссылки вручную
+        //Интерполяция {{xxx}} не работает в атрибутах-ссылках на контент, поэтому обновляем ссылки на видео-фон вручную
         var $bkgVid = document.getElementById('bgvid');
         $scope.updateVideoBkg = function(timeout, cmd) {
             var source = getVideoBkgSource();
