@@ -20,7 +20,7 @@ angular
         $scope.nextQuestion = function() {
             $scope.updateVideoBkg(0);
             clearTimeout(t1);
-            t1 = $scope.applyClass($questionBlock, 'nextQuestionAnimation', 1500);
+            t1 = $scope.applyClass($questionBlock, 'nextQuestionAnimation', 1000);
             clearTimeout(t2);
             t2 = setTimeout(function() {
                 $scope.$apply(function() {
@@ -32,21 +32,21 @@ angular
                         $scope.quizCompleted = true;
                     }
                 });
-            }, 1000); //Обновляем вопрос когда блок уже справа за экраном и вот-вот вылетит
+            }, 750); //Обновляем вопрос когда блок уже справа за экраном и вот-вот вылетит
         };
         var t3, t4;
         $scope.prevQuestion = function() {
             $scope.updateVideoBkg(0);
             $questionBlock.classList.add('prevQuestionAnimation');
             clearTimeout(t3);
-            t3 = $scope.applyClass($questionBlock, 'prevQuestionAnimation', 1500);
+            t3 = $scope.applyClass($questionBlock, 'prevQuestionAnimation', 1000);
             clearTimeout(t4);
             t4 = setTimeout(function() {
                 $scope.$apply(function() {
                     $scope.curInd--;
                     $scope.unpickAll();
                 });
-            }, 1000);
+            }, 750);
         };
 
         $scope.getCurQuestion = function() {

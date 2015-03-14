@@ -14,14 +14,14 @@
     }
 }
 .questionBlock.ng-hide-remove {
-    -webkit-transform: translateX(3000px);
+    -webkit-transform: translateX(1200px);
 }
 .questionBlock.ng-hide-remove-active {
     -webkit-animation: comeFromRight .5s ease;
 }
 @-webkit-keyframes comeFromRight {
     60% {
-        -webkit-transform: translateX(3000px);
+        -webkit-transform: translateX(1200px);
     }
     100% {
         -webkit-transform: translateX(0px);
@@ -41,7 +41,7 @@
 
 /* Следующий вопрос */
 .nextQuestionAnimation {
-    -webkit-animation: nextQuestionAnimation 1.5s ease;
+    -webkit-animation: nextQuestionAnimation 1s ease;
 }
 @-webkit-keyframes nextQuestionAnimation {
     30% {
@@ -63,7 +63,7 @@
 
 /* Предыдущий вопрос */
 .prevQuestionAnimation {
-    -webkit-animation: prevQuestionAnimation 1.5s ease;
+    -webkit-animation: prevQuestionAnimation 1s ease;
 }
 @-webkit-keyframes prevQuestionAnimation {
     30% {
