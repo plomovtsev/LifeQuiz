@@ -29,7 +29,10 @@ angular
                         clearInterval(interval);
                     });
                 }
-            }, 100);
+                else {
+                    console.log('videos are not ready yet');
+                }
+            }, 10);
         };
 
         //Анимация основана на классах, навешиваемых вручную
