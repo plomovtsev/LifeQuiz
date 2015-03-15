@@ -21,7 +21,7 @@ angular
         //Анимация основана на классах, навешиваемых вручную
         var t2;
         $scope.nextQuestion = function() {
-            $scope.updateVideoBkg();
+            $scope.updateVideoBkg(800);
             $scope.applyClass($questionBlock, 'nextQuestionAnimation');
             clearTimeout(t2);
             t2 = setTimeout(function() {
@@ -39,7 +39,7 @@ angular
 
         var t4;
         $scope.prevQuestion = function() {
-            $scope.updateVideoBkg();
+            $scope.updateVideoBkg(800);
             $scope.applyClass($questionBlock, 'prevQuestionAnimation');
             clearTimeout(t4);
             t4 = setTimeout(function() {
