@@ -70,7 +70,7 @@
         -webkit-transform: scale(0.9, 0.9);
     }
     50% {
-        -webkit-transform: scale(0.95, 0.95);
+        -webkit-transform: scale(0.95, 0.95) translateX(-200px);
     }
     75% {
         -webkit-transform: translateX(1200px);
