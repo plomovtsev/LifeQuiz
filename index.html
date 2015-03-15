@@ -11,16 +11,16 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <meta charset="utf-8">
     <title>Анализ жизненной позиции</title>
-    <script src="js/lib/angular.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.5/angular-sanitize.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.5/angular-sanitize.js"></script>
     <script src="https://code.angularjs.org/1.4.0-beta.5/angular-animate.min.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/directives.js"></script>
     <script src="js/quiz.js"></script>
 </head>
 <body ng-controller="appCtrl" ng-mouseup="mouseUpEffect()">
-    <div id="preloading"></div>
 
-    <video src="" autoplay loop id="bgvid"></video>
+    <video id="bgvid" autoplay loop src="" preload-sources="sources"></video>
 
     <div class="topHeader" ng-show="showTopHeader">
         <a href="mailto:{{quiz.authorEmail}}?Subject=LifeQuiz:%20Обратная%20связь" target="_top">{{quiz.authorEmail}}</a>
@@ -60,7 +60,7 @@
                 <div class="ui divider"></div>
                 <div class="answers">
                     <div class="variantsBlock" ng-show="getCurQuestionType() === 'checkbox' || getCurQuestionType() === 'radio'">
-                        <div class="variant {{getCurQuestionType()}}" ng-repeat="ans in quiz.questions[curInd].answers" ng-click="pickVariant($event)">
+                        <div class="variant {{getCurQuestionType()}}" ng-repeat="ans in quiz.questions[curInd].answers" ng-click="checkVariant($event)">
                             <label>
                                 <input type="{{getCurQuestionType()}}" ng-model="userAnswers[curInd]" ng-value="ans">
                                 {{ans}}

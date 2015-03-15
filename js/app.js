@@ -9,25 +9,14 @@ angular
             $scope.curInd = 0;
             $scope.userAnswers = [];
             $scope.quiz = quiz;
-            $scope.preloadVideoBkgs();
             $scope.updateVideoBkg(0, 'init');
         };
-
-        $scope.preloadVideoBkgs = function() {
-            var $preloading = document.getElementById('preloading');
-            var $video;
-            var loadedCount = 0;
-            $scope.quiz.questions.forEach(function(q, index) {
-                $preloading.innerHTML += '<video src="./video-bkg/mp4/' + q.bkg.mp4 + '" id="bkgVideoPreloading-' + index + '"></video>';
-                $video = document.getElementById('bkgVideoPreloading-' + index);
-                $video.load();
-                $video.addEventListener('loadeddata', function() {
-                    loadedCount++;
-                    if (loadedCount == $scope.quiz.questions.length)
-                        $scope.allVideoBkgsLoaded = true;
-                });
-            });
-        };
+        $scope.sources = quiz.questions.map(function(q) {
+            return "./video-bkg/mp4/" + q.bkg.mp4;
+        });
+        $scope.$on('allVideosPreloaded', function() {
+            $scope.allVideoBkgsLoaded = true;
+        });
 
         //Анимация основана на классах, которые вешает ngAnimate
         var $questionBlock = document.querySelector('.questionBlock');
@@ -46,14 +35,14 @@ angular
         //Анимация основана на классах, навешиваемых вручную
         var t2;
         $scope.nextQuestion = function() {
-            $scope.updateVideoBkg(800);
+            $scope.updateVideoBkg(0);
             $scope.applyClass($questionBlock, 'nextQuestionAnimation');
             clearTimeout(t2);
             t2 = setTimeout(function() {
                 $scope.$apply(function() {
                     if ($scope.curInd < $scope.quiz.questions.length - 1) {
                         $scope.curInd++;
-                        $scope.unpickAll();
+                        $scope.uncheckAll();
                     }
                     else {
                         $scope.quizCompleted = true;
@@ -64,13 +53,13 @@ angular
 
         var t4;
         $scope.prevQuestion = function() {
-            $scope.updateVideoBkg(800);
+            $scope.updateVideoBkg(0);
             $scope.applyClass($questionBlock, 'prevQuestionAnimation');
             clearTimeout(t4);
             t4 = setTimeout(function() {
                 $scope.$apply(function() {
                     $scope.curInd--;
-                    $scope.unpickAll();
+                    $scope.uncheckAll();
                 });
             }, 750);
         };
@@ -91,7 +80,7 @@ angular
          * Вешает класс checkedVariant на выбранный вариант ответа (checkbox'ы и radio)
          */
         var checkedClass = 'checkedVariant';
-        $scope.pickVariant = function($event) {
+        $scope.checkVariant = function($event) {
             if ($event.target.tagName === "INPUT") {
                 if ($scope.getCurQuestionType() === "checkbox") {
                     $event.currentTarget.classList.toggle(checkedClass);
@@ -105,7 +94,7 @@ angular
             }
         };
 
-        $scope.unpickAll = function() {
+        $scope.uncheckAll = function() {
             var $checkedElems = document.querySelectorAll('.variant.checkedVariant');
             Array.prototype.forEach.call($checkedElems, function($elem) {
                 $elem.classList.remove(checkedClass);
