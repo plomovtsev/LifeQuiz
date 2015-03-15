@@ -5,17 +5,42 @@ angular
             $scope.showTopHeader = true;
             $scope.quizStarted = false;
             $scope.quizCompleted = false;
+            $scope.allVideoBkgsLoaded = false;
             $scope.curInd = 0;
             $scope.userAnswers = [];
             $scope.quiz = quiz;
+            $scope.preloadVideoBkgs();
             $scope.updateVideoBkg(0, 'init');
+        };
+
+        $scope.preloadVideoBkgs = function() {
+            var $preloading = document.getElementById('preloading');
+            var $video;
+            var loadedCount = 0;
+            $scope.quiz.questions.forEach(function(q, index) {
+                $preloading.innerHTML += '<video src="./video-bkg/mp4/' + q.bkg.mp4 + '" id="bkgVideoPreloading-' + index + '"></video>';
+                $video = document.getElementById('bkgVideoPreloading-' + index);
+                $video.load();
+                $video.addEventListener('loadeddata', function() {
+                    loadedCount++;
+                    if (loadedCount == $scope.quiz.questions.length)
+                        $scope.allVideoBkgsLoaded = true;
+                });
+            });
         };
 
         //Анимация основана на классах, которые вешает ngAnimate
         var $questionBlock = document.querySelector('.questionBlock');
         $scope.startQuiz = function() {
-            $scope.quizStarted = true;
-            $scope.updateVideoBkg();
+            var interval = setInterval(function() {
+                if ($scope.allVideoBkgsLoaded) {
+                    $scope.$apply(function() {
+                        $scope.quizStarted = true;
+                        $scope.updateVideoBkg();
+                        clearInterval(interval);
+                    });
+                }
+            }, 100);
         };
 
         //Анимация основана на классах, навешиваемых вручную
@@ -130,8 +155,8 @@ angular
         //Интерполяция {{xxx}} не работает в атрибутах-ссылках на контент, поэтому обновляем ссылки на видео-фон вручную
         var $bkgVid = document.getElementById('bgvid');
         $scope.updateVideoBkg = function(timeout, cmd) {
-            var source = $scope.getVideoBkgSource();
             setTimeout(function() {
+                var source = $scope.getCurVideoBkgSource();
                 if (cmd != 'init') {
                     $bkgVid.classList.add('bkgReplaceAnimation');
                     setTimeout(function() {
@@ -149,7 +174,7 @@ angular
             }, timeout || 0);
         };
 
-        $scope.getVideoBkgSource = function() {
+        $scope.getCurVideoBkgSource = function() {
             return $scope.quizStarted ? quiz.questions[$scope.curInd].bkg : quiz.bkg;
         };
 

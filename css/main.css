@@ -9,6 +9,10 @@ BODY {
     background: url(../img/rsz_03.png) #3b83c0;
 }
 
+div#preloading {
+    display: none;
+}
+
 /* TOP HEADER */
 .topHeader {
     position: absolute;
